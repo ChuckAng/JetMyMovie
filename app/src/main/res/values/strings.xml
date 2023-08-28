@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyMovie</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="trending">Trending</string>
+    <string name="featured">Featured</string>
+    <string name="popular">Popular</string>
+    <string name="top_10_in_ms">Top 10 in Malaysia</string>
+    <string name="book_your_movie_now">Book your movie now!</string>
+</resources>
