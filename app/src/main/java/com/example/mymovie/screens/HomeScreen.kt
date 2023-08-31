@@ -25,19 +25,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mymovie.R
 import com.example.mymovie.components.SkeletonLoadingItem
 import com.example.mymovie.intents.HomeScreenIntent
 import com.example.mymovie.models.MovieModel
+import com.example.mymovie.navigation.Destination
 import com.example.mymovie.states.HomeScreenState
+import com.example.mymovie.utils.Utils.Companion.modelToJson
 import com.example.mymovie.viewModels.HomeScreenViewModel
 import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val homeScreenViewModel: HomeScreenViewModel = viewModel()
     val eventState = homeScreenViewModel.result.collectAsState()
     val movies = eventState.value
@@ -65,7 +68,7 @@ fun HomeScreen() {
                         alpha = 1f
                     )
                 }
-                HeaderView(messageList = messageList)
+                HeaderView(messageList = messageList, navController = navController)
             }
         }
         is HomeScreenState.Error -> {
@@ -76,7 +79,7 @@ fun HomeScreen() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HeaderView(messageList: List<MovieModel>) {
+private fun HeaderView(messageList: List<MovieModel>, navController: NavController) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState()),
     ) {
@@ -133,7 +136,11 @@ fun HeaderView(messageList: List<MovieModel>) {
                 val page = index % itemsCount
                 CarouselCard(
                     data = messageList[page],
-                    onClick = {},
+                    onClick = {
+                        val model = messageList[page]
+                        val newJson = modelToJson(model, isHasUrl = true)
+                        navController.navigate(Destination.MovieDetailScreen.route + "/$newJson")
+                    },
                     pagerState = pageState,
                     page = index
                 )
@@ -175,7 +182,7 @@ fun HeaderView(messageList: List<MovieModel>) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: PagerState, page: Int) {
+private fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: PagerState, page: Int) {
     val pageOffset = ((pagerState.currentPage - page) + pagerState
         .currentPageOffsetFraction).absoluteValue
     Box(
@@ -238,7 +245,7 @@ fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: PagerState, 
 }
 
 @Composable
-fun FeaturedCard(data: MovieModel, onClick: () -> Unit) {
+private fun FeaturedCard(data: MovieModel, onClick: () -> Unit) {
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp * 0.2f
     Box(modifier = Modifier
         .height(screenHeight)
@@ -258,7 +265,7 @@ fun FeaturedCard(data: MovieModel, onClick: () -> Unit) {
 }
 
 @Composable
-fun HeaderTitleCard(title: String, isShowArrow: Boolean) {
+private fun HeaderTitleCard(title: String, isShowArrow: Boolean) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -283,7 +290,7 @@ fun HeaderTitleCard(title: String, isShowArrow: Boolean) {
 }
 
 @Composable
-fun RegularCard(data: MovieModel, onClick: () -> Unit) {
+private fun RegularCard(data: MovieModel, onClick: () -> Unit) {
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp * 0.3f
     Box(modifier = Modifier
         .height(screenHeight)
