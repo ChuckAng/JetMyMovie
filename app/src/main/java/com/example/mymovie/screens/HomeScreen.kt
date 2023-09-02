@@ -138,8 +138,8 @@ private fun HeaderView(messageList: List<MovieModel>, navController: NavControll
                     data = messageList[page],
                     onClick = {
                         val model = messageList[page]
-                        val newJson = modelToJson(model, isHasUrl = true)
-                        navController.navigate(Destination.MovieDetailScreen.route + "/$newJson")
+                        val movie = modelToJson(model, isHasUrl = true)
+                        navController.navigate(Destination.MovieDetailScreen.route + "/$movie")
                     },
                     pagerState = pageState,
                     page = index
@@ -189,7 +189,7 @@ private fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: Page
         modifier = Modifier
             .wrapContentSize()
             .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-            .background(MaterialTheme.colorScheme.onPrimaryContainer) //white
+            .background(MaterialTheme.colorScheme.onTertiaryContainer)
             .clickable { onClick() }
     ) {
         Column {
@@ -213,14 +213,14 @@ private fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: Page
                     .height(150.dp * (1 - pageOffset))
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                    .background(MaterialTheme.colorScheme.onPrimaryContainer) //white
+                    .background(MaterialTheme.colorScheme.onTertiaryContainer)
                     .graphicsLayer { alpha = 1 - pageOffset },
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
                     text = data.title.toString(),
-                    color = MaterialTheme.colorScheme.onPrimary, //black
+                    color = MaterialTheme.colorScheme.onTertiary,
                     fontSize = 18.sp,
                     fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold,
@@ -228,7 +228,7 @@ private fun CarouselCard(data: MovieModel, onClick: () -> Unit, pagerState: Page
                 )
                 Text(
                     text = data.description.toString(),
-                    color = MaterialTheme.colorScheme.onPrimary, //black
+                    color = MaterialTheme.colorScheme.onTertiary,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 14.sp,
                     fontStyle = FontStyle.Italic,

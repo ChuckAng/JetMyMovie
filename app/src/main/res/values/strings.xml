@@ -6,4 +6,16 @@
     <string name="popular">Popular</string>
     <string name="top_10_in_ms">Top 10 in Malaysia</string>
     <string name="book_your_movie_now">Book your movie now!</string>
+    <string name="buy_ticket">Buy ticket</string>
+    <string name="price_colon">Price:</string>
+    <string name="overview">Overview</string>
+    <string name="rating_colon">Rating:</string>
+    <string name="cast">Cast</string>
+    <string name="vote_colon">Vote:</string>
+    <string name="director">Director</string>
+    <string name="duration_colon">Duration:</string>
+    <string name="release_date_colon">Release Date:</string>
+    <string name="genre_colon">Genre:</string>
+    <string name="spoken_language_colon">Spoken Language:</string>
+    <string name="metadata">Metadata</string>
 </resources>
