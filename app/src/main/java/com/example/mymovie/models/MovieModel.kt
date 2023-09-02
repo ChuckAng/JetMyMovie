@@ -10,7 +10,17 @@ data class MovieModel(
     val id: Int?,
     val title: String?,
     val description: String?,
-    val imageUrl: String?
+    val videoUrl: String?,
+    val imageUrl: String?,
+    val price: String?,
+    val rating: Double?,
+    val vote: Int?,
+    val genre: String?,
+    val releaseDate: String?,
+    val spokenLanguage: String?,
+    val duration: String?,
+    val director: String?,
+    val cast: String?
 ) : Parcelable {
     companion object {
         @JvmStatic
