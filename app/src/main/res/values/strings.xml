@@ -18,4 +18,7 @@
     <string name="genre_colon">Genre:</string>
     <string name="spoken_language_colon">Spoken Language:</string>
     <string name="metadata">Metadata</string>
+    <string name="hall">Hall</string>
+    <string name="row">Row</string>
+    <string name="seat">Seat</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mymovie.screens.HomeScreen
 import com.example.mymovie.screens.MovieDetailScreen
 import com.example.mymovie.screens.SplashScreen
+import com.example.mymovie.screens.TicketDetailScreen
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -29,6 +30,9 @@ fun NavigationView() {
             navBackStackEntry.arguments?.getString("movie_obj")?.let { movie ->
                 MovieDetailScreen(movie)
             }
+        }
+        composable(Destination.TicketDetailScreen.route) {
+            TicketDetailScreen()
         }
     }
 }
