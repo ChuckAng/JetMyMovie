@@ -7,4 +7,5 @@ sealed class Destination(val route: String) {
     object TicketScreen : Destination("ticket_screen")
     object ProfileScreen : Destination("profile_screen")
     object MovieDetailScreen : Destination("movie_detail_screen")
+    object TicketDetailScreen : Destination("ticket_detail_screen")
 }

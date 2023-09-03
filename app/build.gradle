@@ -102,4 +102,6 @@ dependencies {
     implementation 'androidx.media3:media3-exoplayer-hls:1.1.1'
     implementation 'androidx.media3:media3-exoplayer-smoothstreaming:1.1.1'
     implementation 'androidx.media3:media3-ui:1.1.1'
+
+    implementation 'com.simonsickle:composed-barcodes:1.1.1'
 }
