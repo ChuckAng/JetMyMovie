@@ -62,8 +62,7 @@ fun TicketDetailScreen() {
                     contentDescription = null,
                     modifier = Modifier
                         .height(height * 0.3f)
-                        .fillMaxWidth()
-                        .background(Color.Blue),
+                        .fillMaxWidth(),
                     contentScale = ContentScale.Crop
                 )
                 Text(
@@ -152,18 +151,27 @@ fun TicketColumnItem(title: String, value: String) {
 }
 
 @Composable
-fun TicketDashLine(color: Color = MaterialTheme.colorScheme.outline) {
+fun TicketDashLine(
+    isHorizontal: Boolean = true, color: Color = MaterialTheme.colorScheme.outline
+) {
     val pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
     Canvas(
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-            .height(1.dp)
+        modifier = if (isHorizontal) {
+            Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .height(1.dp)
+        } else {
+            Modifier
+                .padding(vertical = 4.dp)
+                .fillMaxHeight()
+                .width(2.dp)
+        }
     ) {
         drawLine(
             color = color,
             start = Offset(0f, 0f),
-            end = Offset(size.width, 0f),
+            end = if (isHorizontal) Offset(size.width, 0f) else Offset(0f, size.height),
             pathEffect = pathEffect
         )
     }
