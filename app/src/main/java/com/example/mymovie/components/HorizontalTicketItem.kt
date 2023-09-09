@@ -2,6 +2,7 @@ package com.example.mymovie.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.icons.Icons
@@ -28,11 +29,11 @@ import com.simonsickle.compose.barcodes.Barcode
 import com.simonsickle.compose.barcodes.BarcodeType
 
 @Composable
-fun HorizontalTicketItem() {
+fun HorizontalTicketItem(onClickTicket: () -> Unit) {
     val config = LocalConfiguration.current
     val height = config.screenHeightDp.dp
     Box(
-        modifier = androidx.compose.ui.Modifier
+        modifier = Modifier
             .height(height * 0.3f)
             .fillMaxWidth()
             .padding(16.dp)
@@ -44,6 +45,7 @@ fun HorizontalTicketItem() {
                 )
             )
             .background(Color.White)
+            .clickable(onClick = onClickTicket)
     ) {
         Row(
             modifier = Modifier

@@ -21,4 +21,6 @@
     <string name="hall">Hall</string>
     <string name="row">Row</string>
     <string name="seat">Seat</string>
+    <string name="today">Today</string>
+    <string name="upcoming">Upcoming</string>
 </resources>
