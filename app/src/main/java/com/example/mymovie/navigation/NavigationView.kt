@@ -3,6 +3,8 @@ package com.example.mymovie.navigation
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -10,8 +12,7 @@ import com.example.mymovie.screens.*
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NavigationView() {
-    val navController = rememberNavController()
+fun NavigationView(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Destination.SplashScreen.route) {
         composable(Destination.SplashScreen.route) {
             SplashScreen(

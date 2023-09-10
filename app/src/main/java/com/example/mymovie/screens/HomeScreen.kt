@@ -68,7 +68,7 @@ fun HomeScreen(navController: NavController) {
                         alpha = 1f
                     )
                 }
-                HeaderView(messageList = messageList, navController = navController)
+                ContentView(messageList = messageList, navController = navController)
             }
         }
         is HomeScreenState.Error -> {
@@ -79,9 +79,9 @@ fun HomeScreen(navController: NavController) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun HeaderView(messageList: List<MovieModel>, navController: NavController) {
+private fun ContentView(messageList: List<MovieModel>, navController: NavController) {
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState()),
+        modifier = Modifier.verticalScroll(rememberScrollState()).padding(bottom = 150.dp),
     ) {
         val config = LocalConfiguration.current
         val screenHeights = config.screenHeightDp.dp * 0.6f
