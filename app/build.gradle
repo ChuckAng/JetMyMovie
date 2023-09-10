@@ -8,6 +8,15 @@ android {
     namespace 'com.example.mymovie'
     compileSdk 33
 
+    signingConfigs {
+        release {
+            storeFile file('/Users/aslm015-ake-mobile/Downloads/jet-my-movie.jks')
+            storePassword 'armyantdev123'
+            keyAlias 'jetmymovie'
+            keyPassword 'armyantdev123'
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.mymovie"
         minSdk 24
@@ -19,12 +28,18 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -33,6 +48,7 @@ android {
     productFlavors {
         stag {
             dimension "env"
+            applicationIdSuffix = ".stag"
             buildConfigField "String", "BASE_ENDPOINT", "\"http://127.0.0.1:3000/\""
         }
         prod {
