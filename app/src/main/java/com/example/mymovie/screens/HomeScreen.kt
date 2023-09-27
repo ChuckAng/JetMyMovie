@@ -42,17 +42,16 @@ import kotlin.math.absoluteValue
 @Composable
 fun HomeScreen(navController: NavController) {
     val homeScreenViewModel: HomeScreenViewModel = viewModel()
-    val eventState = homeScreenViewModel.result.collectAsState()
-    val movies = eventState.value
+    val eventState = homeScreenViewModel.result.collectAsState().value
     LaunchedEffect(Unit) {
         homeScreenViewModel.resultChannel.send(HomeScreenIntent.GetMovieEvent)
     }
-    when (movies) {
+    when (eventState) {
         is HomeScreenState.Loading -> {
             SkeletonLoadingItem()
         }
         is HomeScreenState.Success -> {
-            val messageList = movies.data
+            val movies = eventState.data
             BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
                 val gradientColors = listOf(
                     MaterialTheme.colorScheme.background.copy(alpha = 0.6f),
@@ -68,7 +67,7 @@ fun HomeScreen(navController: NavController) {
                         alpha = 1f
                     )
                 }
-                ContentView(messageList = messageList, navController = navController)
+                ContentView(movies = movies, navController = navController)
             }
         }
         is HomeScreenState.Error -> {
@@ -79,13 +78,13 @@ fun HomeScreen(navController: NavController) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun ContentView(messageList: List<MovieModel>, navController: NavController) {
+private fun ContentView(movies: List<MovieModel>, navController: NavController) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState()).padding(bottom = 150.dp),
     ) {
         val config = LocalConfiguration.current
         val screenHeights = config.screenHeightDp.dp * 0.6f
-        val itemsCount = messageList.size
+        val itemsCount = movies.size
         val numPages = Int.MAX_VALUE / itemsCount
         val startPage = numPages / 2
         val startIndex = (startPage * itemsCount)
@@ -115,7 +114,7 @@ private fun ContentView(messageList: List<MovieModel>, navController: NavControl
                 )
             }
             Image(
-                painter = rememberAsyncImagePainter(messageList[0].imageUrl),
+                painter = rememberAsyncImagePainter(movies.firstOrNull()?.imageUrl),
                 contentDescription = null,
                 modifier = Modifier
                     .size(width = 56.dp, height = 56.dp)
@@ -135,9 +134,9 @@ private fun ContentView(messageList: List<MovieModel>, navController: NavControl
             ) { index ->
                 val page = index % itemsCount
                 CarouselCard(
-                    data = messageList[page],
+                    data = movies[page],
                     onClick = {
-                        val model = messageList[page]
+                        val model = movies[page]
                         val movie = modelToJson(model, isHasUrl = true)
                         navController.navigate(Destination.MovieDetailScreen.route + "/$movie")
                     },
@@ -157,23 +156,24 @@ private fun ContentView(messageList: List<MovieModel>, navController: NavControl
         Spacer(modifier = Modifier.height(16.dp))
         Column {
             HeaderTitleCard(title = stringResource(R.string.featured), isShowArrow = false)
-            FeaturedCard(data = messageList[0]) {
-
+            movies.firstOrNull()?.let {
+                FeaturedCard(data = it) {
+                }
             }
         }
         Spacer(modifier = Modifier.height(32.dp))
         HeaderTitleCard(title = stringResource(R.string.popular), isShowArrow = true)
         LazyRow {
-            items(messageList.size) { index ->
-                RegularCard(data = messageList.get(index)) {
+            items(movies.size) { index ->
+                RegularCard(data = movies.get(index)) {
                 }
             }
         }
         Spacer(modifier = Modifier.height(32.dp))
         HeaderTitleCard(title = stringResource(R.string.top_10_in_ms), isShowArrow = true)
         LazyRow {
-            items(messageList.size) { index ->
-                RegularCard(data = messageList.get(index)) {
+            items(movies.size) { index ->
+                RegularCard(data = movies.get(index)) {
                 }
             }
         }

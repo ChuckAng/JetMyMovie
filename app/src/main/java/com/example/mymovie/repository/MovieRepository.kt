@@ -6,8 +6,11 @@ import com.example.mymovie.networking.Api
 
 class MovieRepository {
 
-    suspend fun getMovies() = apiRequest {
-        RetroClient.client.create(Api::class.java).getMovies().execute()
+    suspend fun getMovies(
+        searchKey: String?,
+        skip: Int?,
+        take: Int?
+    ) = apiRequest {
+        RetroClient.client.create(Api::class.java).getMovies(searchKey, skip, take).execute()
     }
-
 }

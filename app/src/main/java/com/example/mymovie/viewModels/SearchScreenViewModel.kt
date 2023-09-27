@@ -3,50 +3,37 @@ package com.example.mymovie.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.networking.Resource
-import com.example.mymovie.intents.HomeScreenIntent
 import com.example.mymovie.repository.MovieRepository
-import com.example.mymovie.states.HomeScreenState
+import com.example.mymovie.states.SearchScreenState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 
-class HomeScreenViewModel : ViewModel() {
+class SearchScreenViewModel : ViewModel() {
     private val repo by lazy { MovieRepository() }
-    val resultChannel = Channel<HomeScreenIntent>()
     private val resultStateFlow =
-        MutableStateFlow<HomeScreenState>(HomeScreenState.Loading)
-    val result: StateFlow<HomeScreenState> get() = resultStateFlow.asStateFlow()
+        MutableStateFlow<SearchScreenState>(SearchScreenState.Idle)
+    val result: StateFlow<SearchScreenState> get() = resultStateFlow.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            resultChannel.consumeAsFlow().collect {
-                if (it is HomeScreenIntent.GetMovieEvent) {
-                    getMovies(skip = 0)
-                }
-            }
-        }
-    }
-
-    private suspend fun getMovies(searchKey: String? = null, skip: Int?) {
+    fun getMovies(searchKey: String? = null, skip: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
+            resultStateFlow.emit(SearchScreenState.Loading)
             when (val resource = repo.getMovies(searchKey, skip, 10)) {
                 is Resource.Success -> {
                     resource.data.let { data ->
-                        resultStateFlow.tryEmit(HomeScreenState.Success(data))
+                        resultStateFlow.emit(SearchScreenState.Success(data))
                     }
                 }
                 is Resource.Error -> {
                     resource.errorMsg?.let { errorMsg ->
-                        resultStateFlow.tryEmit(HomeScreenState.Error(errorMsg))
+                        resultStateFlow.emit(SearchScreenState.Error(errorMsg))
                     }
                 }
                 is Resource.Exception -> {
                     resultStateFlow.tryEmit(
-                        HomeScreenState.Error(
+                        SearchScreenState.Error(
                             resource.errorMsg.toString()
                         )
                     )
