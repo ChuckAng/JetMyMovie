@@ -23,4 +23,6 @@
     <string name="seat">Seat</string>
     <string name="today">Today</string>
     <string name="upcoming">Upcoming</string>
+    <string name="search_movie_name">Search movie name</string>
+    <string name="no_result_found">Opps, no result found for \"%1$s\"</string>
 </resources>
