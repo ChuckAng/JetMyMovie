@@ -14,8 +14,8 @@ fun NavigationView(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Destination.SplashScreen.route) {
         composable(Destination.SplashScreen.route) {
             SplashScreen(
-                onHome = {
-                    navController.navigate(Destination.HomeScreen.route)
+                gotoLogin = {
+                    navController.navigate(Destination.LoginScreen.route)
                 }
             )
         }
@@ -35,6 +35,9 @@ fun NavigationView(navController: NavHostController) {
         }
         composable(Destination.SearchScreen.route) {
             SearchScreen()
+        }
+        composable(Destination.LoginScreen.route) {
+            LoginScreen()
         }
     }
 }
