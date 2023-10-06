@@ -25,4 +25,10 @@
     <string name="upcoming">Upcoming</string>
     <string name="search_movie_name">Search movie name</string>
     <string name="no_result_found">Opps, no result found for \"%1$s\"</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="email_hint">E.g.: John.doe@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="sign_up_now">Sign up now</string>
 </resources>

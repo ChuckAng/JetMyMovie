@@ -18,7 +18,7 @@ import com.example.mymovie.R
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun SplashScreen(onHome: () -> Unit) {
+fun SplashScreen(gotoLogin: () -> Unit) {
     val systemUiController = rememberSystemUiController()
     systemUiController.isStatusBarVisible = false
     Box(
@@ -31,7 +31,7 @@ fun SplashScreen(onHome: () -> Unit) {
             val animationState = animateLottieCompositionAsState(composition = composition)
             LottieAnimation(composition = composition, progress = animationState.progress)
             if (animationState.isAtEnd && animationState.isPlaying) {
-                onHome()
+                gotoLogin()
             }
         }
     }

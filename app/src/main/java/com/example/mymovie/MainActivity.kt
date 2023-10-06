@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
@@ -18,10 +19,11 @@ import com.example.mymovie.ui.theme.MyMovieTheme
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             MyMovieTheme {
                 val navController = rememberNavController()
-                var isShowBottomBar by remember { mutableStateOf(true) }
+                var isShowBottomBar by remember { mutableStateOf(false) }
 
                 navController.addOnDestinationChangedListener(object :
                     NavController.OnDestinationChangedListener {
@@ -32,6 +34,7 @@ class MainActivity : BaseActivity() {
                     ) {
                         val currentRoute = controller.currentDestination?.route
                         isShowBottomBar = currentRoute != Destination.SplashScreen.route
+                                && currentRoute != Destination.LoginScreen.route
                     }
                 })
                 Scaffold(

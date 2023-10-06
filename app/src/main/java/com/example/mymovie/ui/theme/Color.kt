@@ -3,10 +3,10 @@ package com.example.mymovie.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // Light
-val PrimaryLight = Color(0xFF00639B)
-val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFFCEE5FF)
-val OnPrimaryContainerLight = Color(0xFF001D33)
+val PrimaryLight = Color(0xFF6b5778)
+val OnPrimaryLight = Color(0xFFffffff)
+val PrimaryContainerLight = Color(0xFFf2daff)
+val OnPrimaryContainerLight = Color(0xFF251431)
 
 val SecondaryLight = Color(0xFF535f70)
 val OnSecondaryLight = Color(0xFFffffff)
@@ -32,10 +32,10 @@ val SurfaceVariantLight = Color(0xFFdfe2eb)
 val OnSurfaceVariantLight = Color(0xFF43474e)
 
 // Dark
-val PrimaryDark = Color(0xFF97CBFF)
-val OnPrimaryDark = Color(0xFF003353)
-val PrimaryContainerDark = Color(0xFF004A76)
-val OnPrimaryContainerDark = Color(0xFFCEE5FF)
+val PrimaryDark = Color(0xFFd7bee4)
+val OnPrimaryDark = Color(0xFF3b2948)
+val PrimaryContainerDark = Color(0xFF523f5f)
+val OnPrimaryContainerDark = Color(0xFFf2daff)
 
 val SecondaryDark = Color(0xFFbbc7db)
 val OnSecondaryDark = Color(0xFF253140)
