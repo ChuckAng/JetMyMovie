@@ -31,4 +31,11 @@
     <string name="email_hint">E.g.: John.doe@gmail.com</string>
     <string name="email">Email</string>
     <string name="sign_up_now">Sign up now</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="username_hint">E.g.: John Doe</string>
+    <string name="username">Username</string>
+    <string name="please_sign_in_to_continue">Please sign in to continue</string>
+    <string name="get_started">Get Started</string>
 </resources>
