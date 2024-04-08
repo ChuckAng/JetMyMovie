@@ -7,15 +7,15 @@ plugins {
 android {
     namespace 'com.example.mymovie'
     compileSdk 33
-
     signingConfigs {
         release {
-            storeFile file('/Users/aslm015-ake-mobile/Downloads/jet-my-movie.jks')
-            storePassword 'armyantdev123'
+            storePassword 'armyantdev'
             keyAlias 'jetmymovie'
-            keyPassword 'armyantdev123'
+            keyPassword 'armyantdev'
+            storeFile file('/Users/Projects/MyMovie/keystores/jet-my-movie')
         }
     }
+
 
     defaultConfig {
         applicationId "com.example.mymovie"

@@ -11,6 +11,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
+import com.example.core.CoreModule
 import com.example.mymovie.navigation.BottomNavigation
 import com.example.mymovie.navigation.Destination
 import com.example.mymovie.navigation.NavigationView
@@ -19,6 +20,7 @@ import com.example.mymovie.ui.theme.MyMovieTheme
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        CoreModule.init(application)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             MyMovieTheme {
