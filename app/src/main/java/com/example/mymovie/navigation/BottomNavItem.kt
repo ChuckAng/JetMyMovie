@@ -1,10 +1,15 @@
 package com.example.mymovie.navigation
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,7 +43,8 @@ fun BottomNavigation(navController: NavController) {
 
     NavigationBar(
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, bottom = 24.dp)
+            .height(64.dp)
+            .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
             .clip(RoundedCornerShape(corner = CornerSize(16.dp))),
         containerColor = MaterialTheme.colorScheme.surface,
     ) {

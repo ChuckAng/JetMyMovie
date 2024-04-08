@@ -15,7 +15,9 @@ fun NavigationView(navController: NavHostController) {
         composable(Destination.SplashScreen.route) {
             SplashScreen(
                 gotoLogin = {
-                    navController.navigate(Destination.LoginScreen.route)
+//                    navController.navigate(Destination.LoginScreen.route)
+                    //todo: temporary to home screen for demo purpose
+                    navController.navigate(Destination.HomeScreen.route)
                 }
             )
         }
