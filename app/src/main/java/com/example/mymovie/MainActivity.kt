@@ -1,5 +1,6 @@
 package com.example.mymovie
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Scaffold
@@ -7,7 +8,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
@@ -18,10 +18,10 @@ import com.example.mymovie.navigation.NavigationView
 import com.example.mymovie.ui.theme.MyMovieTheme
 
 class MainActivity : BaseActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         CoreModule.init(application)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             MyMovieTheme {
                 val navController = rememberNavController()

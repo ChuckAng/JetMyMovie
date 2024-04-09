@@ -1,12 +1,18 @@
 package com.example.mymovie.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.mymovie.screens.*
+import com.example.mymovie.screens.HomeScreen
+import com.example.mymovie.screens.LoginScreen
+import com.example.mymovie.screens.MovieDetailScreen
+import com.example.mymovie.screens.ProfileScreen
+import com.example.mymovie.screens.SearchScreen
+import com.example.mymovie.screens.SplashScreen
+import com.example.mymovie.screens.TicketDetailScreen
+import com.example.mymovie.screens.TicketScreen
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -40,6 +46,9 @@ fun NavigationView(navController: NavHostController) {
         }
         composable(Destination.LoginScreen.route) {
             LoginScreen()
+        }
+        composable(Destination.ProfileScreen.route) {
+            ProfileScreen()
         }
     }
 }
